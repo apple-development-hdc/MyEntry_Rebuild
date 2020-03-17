@@ -6,7 +6,7 @@ import {
 } from '@ant-design/icons';
 import {withRouter} from "react-router-dom";
 
-const { SubMenu } = Menu;
+
 
 class PageLayout extends Component {
 
@@ -14,35 +14,46 @@ class PageLayout extends Component {
     componentDidMount() {
         console.log(window.location.pathname);
         let p = window.location.pathname;
-        // api call 
-        if(p === "/home/" || p === "/home") {
-            let valid = localStorage.getItem("is_valid");
-            console.log(valid);
-            if(valid === "false") {
-                console.log("upda");
-                this.props.history.push("/login");
-            }
+        // api call
+        if(window.localStorage.getItem("user")==="true" || window.localStorage.getItem("guard")==="true"){
+            this.props.history.push("/home/");
         }
+        else{
+            this.props.history.push("/login");
+        }
+
     }
 
     state = {
-        current : 'mail',
+        current : 'in',
     };
     handleClick = e => {
         console.log('click ', e);
-        this.setState({
-            current: e.key,
-        });
+        if(e.key === "out"){
+            this.props.history.push("/");
+            window.localStorage.setItem("user","false");
+            window.localStorage.setItem("guard","false");
+            this.setState({
+                current: 'in',
+            });
+        }
+
     };
     render() {
 
         return (
             <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-                <Menu.Item key="mail" >
+                <Menu.Item key="in">
                     <AppleOutlined />
-                    Log In
+                    LOG IN
+                </Menu.Item>
+                <Menu.Item key="out" >
+
+                    LOG OUT
                 </Menu.Item>
             </Menu>
+
+
         );
     }
 }
