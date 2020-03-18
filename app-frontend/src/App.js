@@ -7,6 +7,8 @@ import 'antd/dist/antd.css';
 import UserLogin from "./components/UserLogin";
 import Visitor from "./components/Visitor";
 import Tofa from "./components/Tofa";
+import VisitorLog from "./components/VisitorLog";
+import NewVisitor from "./components/NewVisitor";
 
 function App() {
 
@@ -21,6 +23,8 @@ function App() {
               <Route exact path={"/home/"} ><Home /></Route>
               <Route exact path={"/tofa/"} ><Tofa/></Route>
               <Route exact path={"/visitor/"} ><Visitor/></Route>
+              <Route exact path={"/visitor/log/"} ><VisitorLog/></Route>
+              <Route exact path={"/visitor/new/"} ><NewVisitor/></Route>
 
 
           </Router>

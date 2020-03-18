@@ -4,24 +4,39 @@ import {withRouter} from "react-router-dom";
 import { Card, Avatar } from 'antd';
 import './Home.css';
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
+import * as Swal from "sweetalert2";
 
 const { Meta } = Card;
 
 class Home extends Component {
     onTofaClick = () =>{
-
+            if(window.localStorage.getItem("user")==="true" && window.localStorage.getItem("guard")==="false"){
+                this.props.history.push("/tofa/");
+            }
+            else{
+                Swal.fire(
+                    'Not Authorized',
+                    'Wrong Credentials Reported',
+                    'error'
+                )
+            }
     };
 
     onVisitorClick = () =>{
-
-    };
-    onScannerClick = () =>{
-        window.localStorage.setItem("user","false");
-        if(window.localStorage.getItem("guard")==="false"){
-            this.props.history.push("/");
+        if(window.localStorage.getItem("guard")==="true" ||  window.localStorage.getItem("user")==="true"){
+            this.props.history.push("/visitor/")
         }
         else{
-            // to Scanner
+            this.props.history.push("/");
+        }
+    };
+    onScannerClick = () =>{
+
+        if(window.localStorage.getItem("guard")==="true" ||  window.localStorage.getItem("user")==="true"){
+            //to Scanner
+        }
+        else{
+            this.props.history.push("/");
         }
     };
 
