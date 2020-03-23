@@ -43,10 +43,8 @@ class Home extends Component {
 
 
     render() {
-
-
         return (
-            <div className="cards">
+             <div className="cards">
                 <Row gutter={16}>
                     <Col span={8}>
 
