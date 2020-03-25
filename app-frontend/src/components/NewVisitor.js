@@ -55,12 +55,13 @@ class NewVisitor extends Component {
 
         const capture = () => {
             const imageSrc = this.webcam.getScreenshot();
+            sessionStorage.setItem("capture",imageSrc);
             this.setState({snap : imageSrc});
             this.setState({cam : false});
         };
 
         const camera = () => {
-            if (this.state.cam == true) {
+            if (this.state.cam === true) {
                 return (<div>
                     <Webcam
                         audio={false}
@@ -173,6 +174,7 @@ class NewVisitor extends Component {
                     </Button>
                     <Form.Item name={['user', 'camera']}>
                         {camera()}
+
                     </Form.Item>
                 </Form.Item>
             </Form>

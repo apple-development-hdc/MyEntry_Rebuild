@@ -49,7 +49,7 @@ class Home extends Component {
                     <Col span={8}>
 
 
-                <Card style={{ width: 300, height:200,marginTop: 16 }} >
+                <Card style={{ width: 300, height:200,marginTop: 16 ,borderRadius:10,backgroundColor:"ghostwhite"}} >
                     <Meta
                         avatar={
                             <Avatar
@@ -64,12 +64,12 @@ class Home extends Component {
 
                     />
                     <div className="tofa">
-                        <Button type="danger" onClick={this.onTofaClick}>TOFA Handle</Button>
+                        <Button type="danger" style={{borderRadius:10}} onClick={this.onTofaClick}>TOFA Handle</Button>
                     </div>
                 </Card>
                     </Col>
                     <Col span={8}>
-                        <Card style={{ width: 300, height:200,marginTop: 16 }} >
+                        <Card style={{ width: 300, height:200,marginTop: 16,borderRadius:10,backgroundColor:"floralwhite" }} >
                             <Meta
                                 avatar={
                                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -79,13 +79,13 @@ class Home extends Component {
 
                             />
                             <div className="tofa">
-                            <Button type="danger" onClick={this.onVisitorClick}>Visitor Log</Button>
+                            <Button type="danger" style={{borderRadius:10}} onClick={this.onVisitorClick}>Visitor Log</Button>
                             </div>
                             </Card>
                     </Col>
 
                 <Col span={8}>
-                    <Card style={{ width: 300, height:200,marginTop: 16 }} >
+                    <Card style={{ width: 300, height:200,marginTop: 16 ,borderRadius:10,backgroundColor:"ghostwhite"}} >
                         <Meta
                             avatar={
                                 <Avatar icon={<UserOutlined />} />
@@ -95,7 +95,7 @@ class Home extends Component {
 
                         />
                         <div className="tofa">
-                            <Button type="danger" onClick={this.onScannerClick}>Scanner ON</Button>
+                            <Button type="danger" style={{borderRadius:10}} onClick={this.onScannerClick}>Scanner ON</Button>
                         </div>
                     </Card>
                 </Col>

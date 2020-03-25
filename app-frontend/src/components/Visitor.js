@@ -36,7 +36,7 @@ class Visitor extends Component {
             <div className="cards">
                 <Row gutter={16}>
                     <Col span={8}>
-                        <Card style={{ width: 300, height:200,marginTop: 16 }} >
+                        <Card style={{ width: 300, height:200,marginTop: 16 ,borderRadius:10,backgroundColor:"whitesmoke"}} >
                             <Meta
                                 avatar={
                                     <Avatar
@@ -51,12 +51,12 @@ class Visitor extends Component {
 
                             />
                             <div className="tofa">
-                                <Button type="danger" onClick={this.onNewClick}>Add Visitor</Button>
+                                <Button type="danger" style={{borderRadius:10}} onClick={this.onNewClick}>Add Visitor</Button>
                             </div>
                         </Card>
                     </Col>
                     <Col span={8}>
-                        <Card style={{ width: 300, height:200,marginTop: 16 }} >
+                        <Card style={{ width: 300, height:200,marginTop: 16, backgroundColor:"floralwhite",borderRadius:10 }} >
                             <Meta
                                 avatar={
                                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -66,7 +66,7 @@ class Visitor extends Component {
 
                             />
                             <div className="tofa">
-                                <Button type="danger" onClick={this.onLogClick}>Visitor Log</Button>
+                                <Button type="danger" style={{borderRadius:10}} onClick={this.onLogClick}>Visitor Log</Button>
                             </div>
                         </Card>
                     </Col>

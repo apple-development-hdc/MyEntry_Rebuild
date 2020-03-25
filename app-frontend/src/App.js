@@ -20,9 +20,15 @@ function App() {
         <div className="pageset">
             <Route exact path={["/","/login/"]} ><UserLogin /></Route>
         </div>
-              <Route exact path={"/home/"} ><Home /></Route>
+        <div className="homeset">
+            <Route exact path={"/home/"} ><Home /></Route>
+        </div>
+
               <Route exact path={"/tofa/"} ><Tofa/></Route>
-              <Route exact path={"/visitor/"} ><Visitor/></Route>
+         <div className="visitor">
+             <Route exact path={"/visitor/"} ><Visitor/></Route>
+         </div>
+
               <Route exact path={"/visitor/log/"} ><VisitorLog/></Route>
               <Route exact path={"/visitor/new/"} ><NewVisitor/></Route>
 
