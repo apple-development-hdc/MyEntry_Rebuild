@@ -30,6 +30,7 @@ class NewVisitor extends Component {
 
     state = {
         cam : false,
+        snap : null,
     };
     render() {
 
@@ -54,30 +55,35 @@ class NewVisitor extends Component {
 
         const capture = () => {
             const imageSrc = this.webcam.getScreenshot();
+            this.setState({snap : imageSrc});
+            this.setState({cam : false});
         };
 
         const camera = () => {
-            if (this.state.cam === true) {
+            if (this.state.cam == true) {
                 return (<div>
                     <Webcam
                         audio={false}
                         height={350}
-                        ref={this.setRef}
+                        ref={setRef}
                         screenshotFormat="image/jpeg"
                         width={350}
                         videoConstraints={videoConstraints}
                     />
-                    <button onClick={this.capture}>Capture photo</button>
+                    <button onClick={capture}>Capture photo</button>
                 </div>);
             } else {
                 return (<div></div>);
             }
-        }
+        };
 
 
         return (
 
-            <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+            <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}
+            initialValues={{
+                camImage : this.state.snap,
+            }}>
                 <Form.Item name={['user', 'source']} label="Source">
                     <Radio.Group>
                         <Radio value="Wipro">Wipro</Radio>
@@ -161,22 +167,13 @@ class NewVisitor extends Component {
                         Submit
                     </Button>
                     <Button style={{borderRadius: 10, marginLeft: 14}} type="primary" htmlType="reset" onClick={() => {
-                        this.setState({cam : true});
+                        this.setState({cam : true}); console.log("hehe");
                     }}>
                         Take Pic
                     </Button>
-                    <div>
-                        <Webcam
-                            audio={false}
-                            height={350}
-                            ref={this.setRef}
-                            screenshotFormat="image/jpeg"
-                            width={350}
-                            videoConstraints={videoConstraints}
-                        />
-                        <button onClick={this.capture}  type="primary">Capture photo</button>
-                        {this.camera}
-                    </div>
+                    <Form.Item name={['user', 'camera']}>
+                        {camera()}
+                    </Form.Item>
                 </Form.Item>
             </Form>
         );
