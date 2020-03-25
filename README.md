@@ -16,3 +16,9 @@
 [![forthebadge](https://forthebadge.com/images/badges/winter-is-coming.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/powered-by-responsibility.svg)](https://forthebadge.com)
 </div>
+
+```
+Make branch as name/backend.
+Write your OWN JUnits if you want to write
+Don't merge codes ,we will merge codes in office.
+```

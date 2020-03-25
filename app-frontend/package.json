@@ -21,6 +21,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-signup-login-component": "^1.2.0",
+    "react-webcam": "^5.0.1",
     "reactstrap": "^8.4.1",
     "sweetalert2": "^9.10.2"
   },
