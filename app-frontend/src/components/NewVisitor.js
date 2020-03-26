@@ -168,7 +168,7 @@ class NewVisitor extends Component {
                         Submit
                     </Button>
                     <Button style={{borderRadius: 10, marginLeft: 14}} type="primary" htmlType="reset" onClick={() => {
-                        this.setState({cam : true}); console.log("hehe");
+                        this.setState({cam : true}); console.log("CAM Activated");
                     }}>
                         Take Pic
                     </Button>
@@ -176,6 +176,8 @@ class NewVisitor extends Component {
                         {camera()}
 
                     </Form.Item>
+
+
                 </Form.Item>
             </Form>
         );

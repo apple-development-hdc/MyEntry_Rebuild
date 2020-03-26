@@ -8,7 +8,18 @@ import * as Swal from "sweetalert2";
 
 const { Meta } = Card;
 
+window.addEventListener("beforeunload", (ev) =>
+{
+    ev.preventDefault();
+    console.log("close");
+    for(let i=0;i<localStorage.length;i++){
+        let key=(localStorage.key(i));
+        localStorage.setItem(key,"false");
+    }
+    return ev.returnValue = 'Are you sure you want to close?';
+});
 class Home extends Component {
+
     onTofaClick = () =>{
             if(window.localStorage.getItem("user")==="true" && window.localStorage.getItem("guard")==="false"){
                 this.props.history.push("/tofa/");
