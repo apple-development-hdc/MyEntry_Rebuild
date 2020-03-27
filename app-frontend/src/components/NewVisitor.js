@@ -28,10 +28,12 @@ const validateMessages = {
 
 class NewVisitor extends Component {
 
-    state = {
-        cam : false,
-        snap : null,
-    };
+
+       state = {
+            cam : false,
+            snap : null,
+        };
+
     render() {
 
 
@@ -54,8 +56,10 @@ class NewVisitor extends Component {
         };
 
         const capture = () => {
+
             const imageSrc = this.webcam.getScreenshot();
-            sessionStorage.setItem("capture",imageSrc);
+            sessionStorage.setItem("image",imageSrc.trim());
+            this.setState({imagebase: imageSrc.trim()});
             this.setState({snap : imageSrc});
             this.setState({cam : false});
         };
@@ -71,7 +75,7 @@ class NewVisitor extends Component {
                         width={350}
                         videoConstraints={videoConstraints}
                     />
-                    <button onClick={capture}>Capture photo</button>
+                    <button onClick={capture} type="danger">Capture photo</button>
                 </div>);
             } else {
                 return (<div></div>);
@@ -84,8 +88,14 @@ class NewVisitor extends Component {
             <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}
             initialValues={{
                 camImage : this.state.snap,
-            }}>
-                <Form.Item name={['user', 'source']} label="Source">
+            }} >
+                <Form.Item name={['user', 'source']}
+                           label="Source"
+                            rules={[
+                                {
+                                  required: true,
+                                },
+                            ]}>
                     <Radio.Group>
                         <Radio value="Wipro">Wipro</Radio>
                         <Radio value="External">External</Radio>
@@ -172,10 +182,10 @@ class NewVisitor extends Component {
                     }}>
                         Take Pic
                     </Button>
-                    <Form.Item name={['user', 'camera']}>
+                    <Form.Item name={['user', 'camera',sessionStorage.getItem("image")]}>
                         {camera()}
-
                     </Form.Item>
+
 
 
                 </Form.Item>
