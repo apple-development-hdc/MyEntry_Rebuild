@@ -1,6 +1,7 @@
       
+    ## MyEntry Wipro Rebuild
 <div align="center">
-      <h2>MyEntry Wipro Rebuild</h2>
+ 
 ![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)
 [![Build Status](https://travis-ci.com/anuragsarkar97/msgs.svg?branch=master)](https://travis-ci.com/anuragsarkar97/msgs)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/anuragsarkar97/msgs/graphs/commit-activity)
