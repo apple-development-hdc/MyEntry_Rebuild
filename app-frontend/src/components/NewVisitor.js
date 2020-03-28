@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Form, Input,Button,Radio} from 'antd';
 import {withRouter} from "react-router";
 import Webcam from "react-webcam";
+import * as Swal from "sweetalert2";
 
 
 const layout = {
@@ -15,6 +16,7 @@ const layout = {
 
 const validateMessages = {
     required: 'This field is required!',
+    camrequired:'Taking Photo is Mandatory !!',
     types: {
         email: 'Not a validate email!',
         number: 'Not a validate number!',
@@ -39,10 +41,7 @@ class NewVisitor extends Component {
 
         const onFinish = values => {
             console.log(values);
-        };
-        const resets = () => {
-            console.log("dhsv")
-
+            sessionStorage.clear();
         };
 
         const videoConstraints = {
@@ -59,6 +58,13 @@ class NewVisitor extends Component {
 
             const imageSrc = this.webcam.getScreenshot();
             sessionStorage.setItem("image",imageSrc.trim());
+            if(imageSrc.length>0){
+                Swal.fire(
+                    'Photo Taken',
+                    'Image has been recorded',
+                    'success'
+                )
+            }
             this.setState({imagebase: imageSrc.trim()});
             this.setState({snap : imageSrc});
             this.setState({cam : false});
@@ -182,7 +188,12 @@ class NewVisitor extends Component {
                     }}>
                         Take Pic
                     </Button>
-                    <Form.Item name={['user', 'camera',sessionStorage.getItem("image")]}>
+                    <Form.Item name={['user', 'camera',sessionStorage.getItem("image")]}
+                               rules={[
+                                   {
+                                       camrequired: true
+                                   },
+                               ]}>
                         {camera()}
                     </Form.Item>
 

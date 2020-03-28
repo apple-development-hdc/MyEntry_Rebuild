@@ -12,6 +12,7 @@ import NewVisitor from "./components/NewVisitor";
 
 function App() {
 
+
   return (
       <div>
 
@@ -30,6 +31,7 @@ function App() {
          </div>
 
               <Route exact path={"/visitor/log/"} ><VisitorLog/></Route>
+
               <Route exact path={"/visitor/new/"} ><NewVisitor/></Route>
 
 

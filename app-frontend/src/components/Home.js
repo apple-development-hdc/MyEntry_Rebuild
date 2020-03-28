@@ -6,12 +6,14 @@ import './Home.css';
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 import * as Swal from "sweetalert2";
 
+
 const { Meta } = Card;
 
 window.addEventListener("beforeunload", (ev) =>
 {
     ev.preventDefault();
     console.log("close");
+    sessionStorage.clear();
     for(let i=0;i<localStorage.length;i++){
         let key=(localStorage.key(i));
         localStorage.setItem(key,"false");
@@ -43,8 +45,13 @@ class Home extends Component {
     };
     onScannerClick = () =>{
 
-        if(window.localStorage.getItem("guard")==="true" ||  window.localStorage.getItem("user")==="true"){
-            //to Scanner
+        if(window.localStorage.getItem("guard")==="true" ||  window.localStorage.getItem("user")==="true") {
+            //this.dangerouslySetInnerHTML={this.createMarkup()}
+            const filepath = "app-frontend/src/Scanner/index1.html";
+           function f() {
+             window.location.assign("http://localhost:63342/app-frontend/src/Scanner/index1.html?_ijt=qude5eb4olraiqtuoms83ifatv");
+           }
+           f.call();
         }
         else{
             this.props.history.push("/");
@@ -106,6 +113,7 @@ class Home extends Component {
 
                         />
                         <div className="tofa">
+
                             <Button type="danger" style={{borderRadius:10}} onClick={this.onScannerClick}>Scanner ON</Button>
                         </div>
                     </Card>
