@@ -47,7 +47,7 @@ class Home extends Component {
 
         if(window.localStorage.getItem("guard")==="true" ||  window.localStorage.getItem("user")==="true") {
             //this.dangerouslySetInnerHTML={this.createMarkup()}
-            const filepath = "app-frontend/src/Scanner/index1.html";
+
            function f() {
              window.location.assign("http://localhost:63342/app-frontend/src/Scanner/index1.html?_ijt=qude5eb4olraiqtuoms83ifatv");
            }
@@ -58,13 +58,21 @@ class Home extends Component {
         }
     };
 
+    onAssetClick=()=>{
+        if(window.localStorage.getItem("guard")==="true" ||  window.localStorage.getItem("user")==="true"){
+            this.props.history.push("/assets/")
+        }
+        else{
+            this.props.history.push("/");
+        }
 
+    };
 
     render() {
         return (
-             <div className="cards">
+             <div className="cards" style={{marginBottom:500}}>
                 <Row gutter={16}>
-                    <Col span={8}>
+                    <Col span={12}>
 
 
                 <Card style={{ width: 300, height:200,marginTop: 16 ,borderRadius:10,backgroundColor:"ghostwhite"}} >
@@ -102,23 +110,43 @@ class Home extends Component {
                             </Card>
                     </Col>
 
-                <Col span={8}>
-                    <Card style={{ width: 300, height:200,marginTop: 16 ,borderRadius:10,backgroundColor:"ghostwhite"}} >
-                        <Meta
-                            avatar={
-                                <Avatar icon={<UserOutlined />} />
-                            }
-                            title="SCANNER"
-                            description="Unable Scanner"
 
-                        />
-                        <div className="tofa">
-
-                            <Button type="danger" style={{borderRadius:10}} onClick={this.onScannerClick}>Scanner ON</Button>
-                        </div>
-                    </Card>
-                </Col>
                 </Row>
+
+                 <Row gutter={16}>
+                     <Col span={12}>
+                         <Card style={{ width: 300, height:200,marginTop: 16 ,borderRadius:10,backgroundColor:"ghostwhite"}} >
+                             <Meta
+                                 avatar={
+                                     <Avatar icon={<UserOutlined />} />
+                                 }
+                                 title="ASSETS"
+                                 description="Assets Management"
+
+                             />
+                             <div className="tofa">
+
+                                 <Button type="danger" style={{borderRadius:10}} onClick={this.onAssetClick}>Assets</Button>
+                             </div>
+                         </Card>
+                     </Col>
+                     <Col span={8}>
+                         <Card style={{ width: 300, height:200,marginTop: 16 ,borderRadius:10,backgroundColor:"whitesmoke"}} >
+                             <Meta
+                                 avatar={
+                                     <Avatar icon={<UserOutlined />} />
+                                 }
+                                 title="SCANNER"
+                                 description="Unable Scanner"
+
+                             />
+                             <div className="tofa">
+
+                                 <Button type="danger" style={{borderRadius:10}} onClick={this.onScannerClick}>Scanner ON</Button>
+                             </div>
+                         </Card>
+                     </Col>
+                 </Row>
             </div>
         );
     }

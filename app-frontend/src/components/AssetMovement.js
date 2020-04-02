@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import { Form, Input,Button,Radio} from 'antd';
+import {Form, Input, Button, Radio, Select} from 'antd';
 import {withRouter} from "react-router";
 import Webcam from "react-webcam";
 import * as Swal from "sweetalert2";
 
-
+const { Option } = Select;
 const layout = {
     labelCol: {
         span: 6,
@@ -13,7 +13,6 @@ const layout = {
         span: 10,
     },
 };
-
 const validateMessages = {
     required: 'This field is required!',
     camrequired:'Taking Photo is Mandatory !!',
@@ -24,15 +23,33 @@ const validateMessages = {
 
 };
 
-
-
-class NewVisitor extends Component {
-
-
-       state = {
-            cam : false,
-            snap : null,
+class AssetMovement extends Component{
+    //drop down manager selection dropdown from backend
+    constructor(props) {
+        super(props);
+        this.state = {
+            behalf: [],
         };
+    }
+    // componentDidMount() { API INTEGRATION
+    //     let managers = [];
+    //     fetch('https://swapi.co/api/planets/')
+    //         .then(response => {
+    //             return response.json();
+    //         }).then(data => {
+    //         managers = data.results.map((behalf) => {
+    //             return behalf
+    //         });
+    //         console.log(managers);
+    //         this.setState({
+    //             behalf: managers,
+    //         });
+    //     });
+    // }
+    state = {
+        cam : false,
+        snap : null,
+    };
 
     render() {
 
@@ -89,84 +106,102 @@ class NewVisitor extends Component {
         return (
 
             <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}
-            initialValues={{
-                camImage : this.state.snap,
-            }} >
-                <Form.Item name={['user', 'source']}
-                           label="Source"
-                            rules={[
-                                {
-                                  required: true,
-                                },
-                            ]}>
+                  initialValues={{
+                      camImage : this.state.snap,
+                  }} >
+                <Form.Item name={['user', 'asset']}
+                           label="Asset"
+                           rules={[
+                               {
+                                   required: true,
+                               },
+                           ]}>
                     <Radio.Group>
-                        <Radio value="Wipro">Wipro</Radio>
-                        <Radio value="External">External</Radio>
+                        <Radio value="IT Asset">IT Asset</Radio>
+                        <Radio value="NON-IT Asset">NON-IT Asset</Radio>
                     </Radio.Group>
                 </Form.Item>
                 <Form.Item
-                    name={['user', 'firstName']}
-                    label="First Name"
+                    name={['user', 'behalf']}
+                    label="Behalf Of"
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Input/>
+                    <Select
+                        showSearch
+                        placeholder="Select a person"
+                        optionFilterProp="children"
+                        filterOption={(input, option) =>
+                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                    >
+                        <Option value="from">From</Option>
+                        <Option value="backend">Backend</Option>
+                    </Select>
+
                 </Form.Item>
                 <Form.Item
-                    name={['user', 'lastName']}
-                    label="Last Name"
+                    name={['user', 'assetsType']}
+                    label="Asset Type"
                     rules={[
                         {
                             required: true,
                         },
                     ]}
                 >
-                    <Input/>
+                    <Select
+                        showSearch
+                        placeholder="Asset Type"
+                        optionFilterProp="children"
+                        filterOption={(input, option) =>
+                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                    >
+                        <Option value="desktop">Desktop</Option>
+                        <Option value="Keyboard">Keyboard</Option>
+                        <Option value="Mouse">Mouse</Option>
+                        <Option value="RAM">RAM</Option>
+                        <Option value="Records">Record Book</Option>
+                        <Option value="Chair">Chair</Option>
+                        <Option value="Table">Table</Option>
+                        <Option value="Duster">Duster</Option>
+                        <Option value="Highlighter">Highlighter</Option>
+                        <Option value="Book">Visitor Book</Option>
+                        <Option value="Others">Other</Option>
+                    </Select>
+                </Form.Item>
+
+                <Form.Item
+                    name={['user', 'Movement']}
+                    label="Movement Type"
+                    rules={[
+                        {
+                            required: true,
+                        },
+                    ]}
+                >
+                    <Select
+                        showSearch
+                        placeholder="Movement Type"
+                        optionFilterProp="children"
+                        filterOption={(input, option) =>
+                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                    >
+                        <Option value="inward">Inward</Option>
+                        <Option value="outward">Outward</Option>
+                    </Select>
                 </Form.Item>
                 <Form.Item
-                    name={['user', 'contact']}
-                    label="Contact"
+                    name={['user', 'assetId']}
+                    label="ASSET ID"
                     rules={[
                         {
                             type: 'string',
                             required: true,
-
-                        },
-                    ]}
-                >
-                    <Input/>
-                </Form.Item>
-                <Form.Item
-                    name={['user', 'comingFrom']}
-                    label="Coming From"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input/>
-                </Form.Item>
-                <Form.Item
-                    name={['user', 'purpose']}
-                    label="Purpose"
-                    rules={[
-                        {
-                            required: true,
-                        },
-                    ]}
-                >
-                    <Input/>
-                </Form.Item>
-                <Form.Item
-                    name={['user', 'serialNo']}
-                    label="Laptop Serial No."
-                    rules={[
-                        {
-                            type: 'string'
 
                         },
                     ]}
@@ -200,7 +235,5 @@ class NewVisitor extends Component {
 }
 
 
+export  default withRouter(AssetMovement);
 
-
-
-export default withRouter(NewVisitor);

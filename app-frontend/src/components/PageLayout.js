@@ -13,7 +13,7 @@ class PageLayout extends Component {
 
     componentDidMount() {
         console.log(window.location.pathname);
-        let p = window.location.pathname;
+       // let p = window.location.pathname;
         // api call
         if(window.localStorage.getItem("user")==="true" || window.localStorage.getItem("guard")==="true"){
             this.props.history.push("/home/");

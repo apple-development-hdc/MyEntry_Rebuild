@@ -9,7 +9,10 @@ import Visitor from "./components/Visitor";
 import Tofa from "./components/Tofa";
 import VisitorLog from "./components/VisitorLog";
 import NewVisitor from "./components/NewVisitor";
-
+import AssetMovement from "./components/AssetMovement";
+/**
+ * @return {boolean}
+ */
 function App() {
 
 
@@ -24,16 +27,13 @@ function App() {
         <div className="homeset">
             <Route exact path={"/home/"} ><Home /></Route>
         </div>
-
               <Route exact path={"/tofa/"} ><Tofa/></Route>
          <div className="visitor">
              <Route exact path={"/visitor/"} ><Visitor/></Route>
          </div>
-
               <Route exact path={"/visitor/log/"} ><VisitorLog/></Route>
-
               <Route exact path={"/visitor/new/"} ><NewVisitor/></Route>
-
+              <Route exaxt path ={"/assets/"}><AssetMovement/></Route>
 
           </Router>
       </div>
