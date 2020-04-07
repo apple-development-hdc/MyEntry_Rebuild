@@ -21,5 +21,17 @@
 ```
 Make branch as name/backend.
 Write your OWN JUnits if you want to write
-Don't merge codes ,we will merge codes in office.
+
+Backend Task : 
+
+1. Authentication / Session Management:
+-Introducing LDAP to create user groups and authorization -> we will recieve a accessToken from here for each TokenId (unique).
+which will be passed to the header of the API.
+2. Manage session through eCache-
+- eCache will store key pair of tokenId ? : accessToken . This has to be checked for each API call (cache.get(tokenId)->?rule)
+- then we have to check the header authorization token httpRequest.header("token").equals(eCache.get("token") == true : PASS.
+
+TO LOAD FRONTEND :
+
+1. Install Node js , react linreary then go to project dir and "npm install " then "npm start".
 ```
