@@ -29,7 +29,8 @@ Backend Task :
 which will be passed to the header of the API.
 2. Manage session through eCache-
 - eCache will store key pair of tokenId ? : accessToken . This has to be checked for each API call (cache.get(tokenId)->?rule)
-- then we have to check the header authorization token httpRequest.header("token").equals(eCache.get("token") == true : PASS.
+- then we have to check the header authorization token 
+httpRequest.header("token").equals(eCache.get("token") == true :"200 OK". else "404 error".
 
 TO LOAD FRONTEND :
 
