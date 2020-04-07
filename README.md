@@ -6,7 +6,7 @@
 [![Build Status](https://travis-ci.com/anuragsarkar97/msgs.svg?branch=master)](https://travis-ci.com/anuragsarkar97/msgs)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/anuragsarkar97/msgs/graphs/commit-activity)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/anuragsarkar97/msgs)
-[![GitHub license](https://img.shields.io/github/license/anuragsarkar97/msgs.svg)](https://github.com/anuragsarkar97/msgs/blob/master/LICENSE)
+
 [![GitHub version](https://badge.fury.io/gh/anuragsarkar97%2Fmsgs.svg)](https://github.com/anuragsarkar97/msgs)
 
 </div>
