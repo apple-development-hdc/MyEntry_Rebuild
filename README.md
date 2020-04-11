@@ -6,7 +6,6 @@
 [![Build Status](https://travis-ci.com/anuragsarkar97/msgs.svg?branch=master)](https://travis-ci.com/anuragsarkar97/msgs)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/anuragsarkar97/msgs/graphs/commit-activity)
 [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/anuragsarkar97/msgs)
-[![GitHub license](https://img.shields.io/github/license/anuragsarkar97/msgs.svg)](https://github.com/anuragsarkar97/msgs/blob/master/LICENSE)
 [![GitHub version](https://badge.fury.io/gh/anuragsarkar97%2Fmsgs.svg)](https://github.com/anuragsarkar97/msgs)
 
 </div>
@@ -21,5 +20,22 @@
 ```
 Make branch as name/backend.
 Write your OWN JUnits if you want to write
-Don't merge codes ,we will merge codes in office.
+
+Backend Task : 
+
+1. Authentication / Session Management:
+-Introducing LDAP to create user groups and authorization -> we will recieve a accessToken from here for each TokenId (unique).
+which will be passed to the header of the API.
+- Need to Manage real time Active Directory , will be using openLDAP(LDAP server)
+(Download  https://www.openldap.org/software/download/) 
+- Apache Directory Studio(This is a LDAP Browser for checking your openLDAP data) 
+-> Download link :  http://directory.apache.org/studio/
+2. Manage session through eCache-
+- eCache will store key pair of tokenId ? : accessToken . This has to be checked for each API call (cache.get(tokenId)->?rule)
+- then we have to check the header authorization token 
+httpRequest.header("token").equals(eCache.get("token") == true :"200 OK". else "404 error".
+
+TO LOAD FRONTEND :
+
+1. Install Node js , react linreary then go to project dir and "npm install " then "npm start".
 ```
