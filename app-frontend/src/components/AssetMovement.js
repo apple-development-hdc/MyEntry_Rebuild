@@ -33,7 +33,7 @@ class AssetMovement extends Component{
     }
     // componentDidMount() { API INTEGRATION
     //     let managers = [];
-    //     fetch('https://swapi.co/api/planets/')
+    //     fetch('https://our_api')
     //         .then(response => {
     //             return response.json();
     //         }).then(data => {

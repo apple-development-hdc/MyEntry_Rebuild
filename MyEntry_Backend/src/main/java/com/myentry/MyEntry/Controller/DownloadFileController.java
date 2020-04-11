@@ -8,6 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ *  Model+ View Controller to access the Model and create a @ResponseBody for the
+ *  Entity
+ */
 @Controller
 public class DownloadFileController {
 
