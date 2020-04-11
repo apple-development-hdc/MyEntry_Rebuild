@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     *  We don't need CSRF for this example
+     *  We don't need CSRF
      *  dont authenticate some particular requests ("/authenticate","/login","/")
      *  making sure we use stateless session;
      *  session won't be used to store user's state.
