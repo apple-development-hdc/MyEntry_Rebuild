@@ -10,14 +10,18 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * Author :SAURAV ROY
+ */
 @Service
 public class FileService{
 
     @Autowired
     LaptopRequestRepository laptopRequestRepository;
 
-    // Store File Data to Database
+    /**
+     *   Store File Data to Database
+      */
     public void store(MultipartFile file){
 
         try {
@@ -32,7 +36,10 @@ public class FileService{
         }
     }
 
-    // Load Data to Excel File
+    /**
+     * Load Data to Excel File
+     * @return ByteArrayInputStream
+     */
     public ByteArrayInputStream loadFile() {
         List<LaptopRequest> laptopRequestList = (List<LaptopRequest>) laptopRequestRepository.findAll();
 

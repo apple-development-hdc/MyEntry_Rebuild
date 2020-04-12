@@ -10,6 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+/**
+ * Author :SAURAV ROY
+ */
 public interface LaptopRequestRepository extends CrudRepository<LaptopRequest, Integer> {
 
     @PersistenceContext

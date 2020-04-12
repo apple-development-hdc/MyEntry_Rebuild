@@ -1,7 +1,9 @@
 package com.myentry.MyEntry.Controller;
 
+import com.myentry.MyEntry.Constants.APIConstants;
 import com.myentry.MyEntry.DTO.JwtRequest;
 import com.myentry.MyEntry.DTO.JwtResponse;
+import com.myentry.MyEntry.DTO.LoginUser;
 import com.myentry.MyEntry.Services.JwtUserDetailsService;
 import com.myentry.MyEntry.Utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +12,17 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Author : SAURAV ROY
+ */
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@CrossOrigin
 public class JwtAuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -25,7 +33,7 @@ public class JwtAuthenticationController {
     @Autowired
     private JwtUserDetailsService userDetailsService;
 
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
     public ResponseEntity<?> createJWTToken(@RequestBody JwtRequest authenticationRequest) throws Exception{
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
@@ -33,9 +41,26 @@ public class JwtAuthenticationController {
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
-
+        System.out.println(token);
         return ResponseEntity.ok(new JwtResponse(token));
     }
+
+    @RequestMapping(value = APIConstants.AUTHENTICATION_API, method = RequestMethod.POST)
+    public ResponseEntity<?> register(@RequestBody LoginUser loginUser) throws AuthenticationException {
+
+        final Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        loginUser.getUsername(),
+                        loginUser.getPassword()
+                )
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        final String token = jwtTokenUtil.generateTokens(authentication);
+        return ResponseEntity.ok(new JwtResponse(token));
+    }
+
+
+
 
     /**
      *

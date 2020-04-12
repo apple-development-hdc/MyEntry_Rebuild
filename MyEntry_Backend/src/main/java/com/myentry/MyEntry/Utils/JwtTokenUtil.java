@@ -1,18 +1,23 @@
 package com.myentry.MyEntry.Utils;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+
+import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.http.HttpHeaders;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
+import static com.myentry.MyEntry.Constants.CommonConstants.*;
+/**
+ * Author :SAURAV ROY
+ */
 @Component
 public class JwtTokenUtil implements Serializable {
 
@@ -68,8 +73,8 @@ public class JwtTokenUtil implements Serializable {
     /**
      * generate new token for user
      * Caching the token with TTL in ecache XML file
-     * @param userDetails
-     * @return
+     * @param userDetails {@link UserDetails}
+     * @return String
      */
 
     public String generateToken(UserDetails userDetails) {
@@ -77,6 +82,39 @@ public class JwtTokenUtil implements Serializable {
         return doGenerateToken(claims, userDetails.getUsername());
     }
 
+    /**
+     * Generating Tokens for API authorization
+     * @param authentication {@link Authentication}
+     * @return String
+     */
+    public String generateTokens(Authentication authentication) {
+        final String authorities = authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(","));
+        return Jwts.builder()
+                .setSubject(authentication.getName())
+                .claim(AUTHORITIES_KEY, authorities)
+                .signWith(SignatureAlgorithm.HS256, SIGNING_KEY)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_VALIDITY_SECONDS*1000))
+                .compact();
+    }
+
+    UsernamePasswordAuthenticationToken getAuthentication(final String token, final Authentication existingAuth, final UserDetails userDetails) {
+
+        final JwtParser jwtParser = Jwts.parser().setSigningKey(SIGNING_KEY);
+
+        final Jws claimsJws = jwtParser.parseClaimsJws(token);
+
+        final Claims claims = (Claims) claimsJws.getBody();
+
+        final Collection authorities =
+                Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList());
+
+        return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
+    }
     /**
      * while creating the token -
      * Define  claims of the token, like Issuer, Expiration, Subject, and the ID
@@ -103,4 +141,7 @@ public class JwtTokenUtil implements Serializable {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
+    /**
+     * expire token manually
+     */
 }

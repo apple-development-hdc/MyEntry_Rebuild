@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.image.*;
 import java.util.Vector;
 
+/**
+ * Author :SAURAV ROY
+ */
 public interface EmployeeImageInterface extends RenderedImage {
 
     @Override

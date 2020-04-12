@@ -1,6 +1,9 @@
 package com.myentry.MyEntry.DTO;
 import javax.persistence.Column;
 
+/**
+ * Author :SAURAV ROY
+ */
 public class LaptopSmall {
 
 

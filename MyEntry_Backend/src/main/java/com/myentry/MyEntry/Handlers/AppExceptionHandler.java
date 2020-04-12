@@ -1,8 +1,14 @@
 package com.myentry.MyEntry.Handlers;
 
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * Author :SAURAV ROY
+ */
+@Slf4j
 public class AppExceptionHandler extends RuntimeException {
 
-    private String message;
+    private  String message;
 
 
     public AppExceptionHandler(String message) {
@@ -11,6 +17,7 @@ public class AppExceptionHandler extends RuntimeException {
 
     @Override
     public String getMessage() {
+        log.error("Application Level Error");
         return message;
     }
 

@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * Author :SAURAV ROY
+ */
 @Entity
 @Table(name = "laptopRequest")
 @JsonInclude(JsonInclude.Include.NON_NULL)

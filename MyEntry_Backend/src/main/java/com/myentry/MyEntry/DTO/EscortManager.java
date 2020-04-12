@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
 
+/**
+ * Author :SAURAV ROY
+ */
 @Entity
 @Table(name = "laptopRequest")
 @JsonInclude(JsonInclude.Include.NON_NULL)

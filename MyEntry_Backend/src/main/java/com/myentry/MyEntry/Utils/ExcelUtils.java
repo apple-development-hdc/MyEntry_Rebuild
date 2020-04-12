@@ -11,8 +11,17 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+/**
+ * Author :SAURAV ROY
+ */
 public class ExcelUtils {
+
+    /**
+     * ByteArrayInputStream to store Excel Data to DB
+     * @param laptopRequests {@link List<LaptopRequest> }
+     * @return ByteArrayInputStream
+     * @throws IOException
+     */
     public static ByteArrayInputStream LaptopRequestToExcel(List<LaptopRequest> laptopRequests) throws IOException{
         String[] COLUMNs = {"id","requested_for","requested_for_email","serial_number","approving_apple_manager","approving_apple_manager_mail","vendor","requested_by","requested_date","start_date","end_date","business_reason","status","expiry_reason","gate_pass_disabled","action_by_name","action_Date","request_id","location","requested_for_dsid","imt","imt1","imt2"};
         try(
@@ -73,6 +82,11 @@ public class ExcelUtils {
         }
     }
 
+    /**
+     * Get Data from DB to Excel for Downloading the updated Excel
+     * @param is
+     * @return
+     */
     public static List<LaptopRequest> parseExcelFile(InputStream is) {
         try{
             Workbook workbook = new XSSFWorkbook(is);

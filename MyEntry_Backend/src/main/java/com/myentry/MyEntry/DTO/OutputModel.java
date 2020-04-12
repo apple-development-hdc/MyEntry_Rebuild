@@ -1,5 +1,8 @@
 package com.myentry.MyEntry.DTO;
 
+/**
+ * Author :SAURAV ROY
+ */
 public class OutputModel {
 
     private boolean result;

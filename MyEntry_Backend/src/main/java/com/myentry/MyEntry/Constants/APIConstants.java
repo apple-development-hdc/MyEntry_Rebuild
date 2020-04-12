@@ -1,9 +1,11 @@
 package com.myentry.MyEntry.Constants;
 
+/**
+ * Author :SAURAV ROY
+ */
 public class APIConstants {
 
-    private static final  String LOGIN="/";
-    private static final  String LOGIN_ALTER="/login";
-    private static final  String VISITOR="/visitor";
+    public static final String SIGNUP_API = "/signup";
+    public static final String AUTHENTICATION_API = "/authenticate";
 
 }
