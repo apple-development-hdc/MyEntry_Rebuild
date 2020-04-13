@@ -1,6 +1,7 @@
-package com.myentry.MyEntry.DTO;
+package com.myentry.MyEntry.Domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.myentry.MyEntry.DTO.Role;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -9,7 +10,7 @@ import java.util.Set;
  * Author :SAURAV ROY
  */
 @Entity
-public class User {
+public class User{
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

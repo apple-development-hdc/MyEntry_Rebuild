@@ -1,14 +1,12 @@
 package com.myentry.MyEntry.Services;
 
-import com.myentry.MyEntry.Constants.CommonConstants;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import com.myentry.MyEntry.DTO.Role;
-import com.myentry.MyEntry.DTO.User;
+import com.myentry.MyEntry.Domain.User;
 import com.myentry.MyEntry.DTO.UserDto;
 import com.myentry.MyEntry.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +97,7 @@ public class JwtUserDetailsService implements UserDetailsService, UserService  {
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+        Role role = new Role();
         return userRepository.save(newUser);
     }
 }

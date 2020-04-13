@@ -1,4 +1,4 @@
-package com.myentry.MyEntry.DTO;
+package com.myentry.MyEntry.Domain;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;

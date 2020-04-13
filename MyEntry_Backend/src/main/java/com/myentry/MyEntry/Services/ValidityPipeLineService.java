@@ -11,6 +11,14 @@ import java.util.Date;
 @Service
 public class ValidityPipeLineService {
 
+    /**
+     * WILL BE USED TO VALIDATE LAPTOP
+     * @param status
+     * @param enddate
+     * @param extendedDate
+     * @return
+     * @throws ParseException
+     */
     public boolean decision(String status, String enddate, String extendedDate) throws ParseException {
         boolean result = false;
         if(status.equals("Approved")){

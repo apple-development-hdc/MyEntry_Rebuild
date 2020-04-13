@@ -1,11 +1,8 @@
 package com.myentry.MyEntry.Controller;
 
 import com.myentry.MyEntry.Constants.APIConstants;
-import com.myentry.MyEntry.DTO.JwtResponse;
-import com.myentry.MyEntry.DTO.LoginUser;
-import com.myentry.MyEntry.DTO.User;
+import com.myentry.MyEntry.Domain.User;
 import com.myentry.MyEntry.DTO.UserDto;
-import com.myentry.MyEntry.Repository.UserRepository;
 import com.myentry.MyEntry.Services.JwtUserDetailsService;
 import com.myentry.MyEntry.Services.UserService;
 import lombok.extern.slf4j.Slf4j;

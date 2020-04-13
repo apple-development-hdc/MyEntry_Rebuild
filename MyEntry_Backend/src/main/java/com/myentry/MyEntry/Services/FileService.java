@@ -1,6 +1,6 @@
 package com.myentry.MyEntry.Services;
 
-import com.myentry.MyEntry.DTO.LaptopRequest;
+import com.myentry.MyEntry.Domain.LaptopRequest;
 import com.myentry.MyEntry.Repository.LaptopRequestRepository;
 import com.myentry.MyEntry.Utils.ExcelUtils;
 import org.springframework.beans.factory.annotation.Autowired;
