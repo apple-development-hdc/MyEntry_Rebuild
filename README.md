@@ -23,17 +23,13 @@ Write your OWN JUnits if you want to write
 
 Backend Task : 
 
-1. Authentication / Session Management:
--Introducing LDAP to create user groups and authorization -> we will recieve a accessToken from here for each TokenId (unique).
-which will be passed to the header of the API.
-- Need to Manage real time Active Directory , will be using openLDAP(LDAP server)
-(Download  https://www.openldap.org/software/download/) 
-- Apache Directory Studio(This is a LDAP Browser for checking your openLDAP data) 
--> Download link :  http://directory.apache.org/studio/
+1. Authentication / Session Management: JWT Token generation for user login and defining the ROLE [HS512]
+   Storing the password in BCryptPasswordEncoder.
 2. Manage session through eCache-
 - eCache will store key pair of tokenId ? : accessToken . This has to be checked for each API call (cache.get(tokenId)->?rule)
 - then we have to check the header authorization token 
 httpRequest.header("token").equals(eCache.get("token") == true :"200 OK". else "404 error".
+- Checking the ROLE from the Token 
 
 TO LOAD FRONTEND :
 
