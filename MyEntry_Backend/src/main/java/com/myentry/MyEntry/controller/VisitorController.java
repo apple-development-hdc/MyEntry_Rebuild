@@ -1,7 +1,7 @@
 package com.myentry.MyEntry.controller;
 
 
-import com.myentry.MyEntry.constants.UrlConstants;
+import com.myentry.MyEntry.constants.APIConstants;
 import com.myentry.MyEntry.dto.VisitorRequestDTO;
 import com.myentry.MyEntry.dto.VisitorResponseDTO;
 import com.myentry.MyEntry.serviceImpl.VisitorServiceImpl;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = UrlConstants.VISITOR_BASE_URL)
+@RequestMapping(value = APIConstants.VISITOR_BASE_URL)
 public class VisitorController {
 
 	@Autowired
