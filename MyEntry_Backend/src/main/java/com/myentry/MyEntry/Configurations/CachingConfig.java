@@ -1,4 +1,4 @@
-package com.myentry.MyEntry.Configurations;
+package com.myentry.MyEntry.configurations;
 
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;

@@ -1,7 +1,7 @@
-package com.myentry.MyEntry.Configurations;
+package com.myentry.MyEntry.configurations;
 
-import com.myentry.MyEntry.Utils.JwtAuthenticationEntryPoint;
-import com.myentry.MyEntry.Utils.JwtRequestFilter;
+import com.myentry.MyEntry.utils.JwtAuthenticationEntryPoint;
+import com.myentry.MyEntry.utils.JwtRequestFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

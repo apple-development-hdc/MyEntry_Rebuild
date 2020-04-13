@@ -1,4 +1,4 @@
-package com.myentry.MyEntry.Interfaces;
+package com.myentry.MyEntry.interfaces;
 
 
 import java.awt.*;

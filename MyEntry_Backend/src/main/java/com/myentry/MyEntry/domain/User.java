@@ -1,7 +1,8 @@
-package com.myentry.MyEntry.Domain;
+package com.myentry.MyEntry.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.myentry.MyEntry.DTO.Role;
+import com.myentry.MyEntry.dto.Role;
+import com.myentry.MyEntry.dto.Role;
 
 import javax.persistence.*;
 import java.util.Set;

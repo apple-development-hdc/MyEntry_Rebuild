@@ -1,6 +1,6 @@
-package com.myentry.MyEntry.Controller;
+package com.myentry.MyEntry.controller;
 
-import com.myentry.MyEntry.Services.FileService;
+import com.myentry.MyEntry.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;

@@ -1,4 +1,4 @@
-package com.myentry.MyEntry.Utils;
+package com.myentry.MyEntry.utils;
 
 
 /**

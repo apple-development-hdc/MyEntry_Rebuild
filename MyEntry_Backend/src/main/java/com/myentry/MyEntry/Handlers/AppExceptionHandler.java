@@ -1,4 +1,4 @@
-package com.myentry.MyEntry.Handlers;
+package com.myentry.MyEntry.handlers;
 
 import lombok.extern.slf4j.Slf4j;
 

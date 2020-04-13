@@ -1,4 +1,4 @@
-package com.myentry.MyEntry.DTO;
+package com.myentry.MyEntry.dto;
 
 /**
  * Author :SAURAV ROY

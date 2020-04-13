@@ -1,10 +1,7 @@
-package com.myentry.MyEntry.Domain;
+package com.myentry.MyEntry.domain;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.UUID;
 
 /**
  * Author :SAURAV ROY

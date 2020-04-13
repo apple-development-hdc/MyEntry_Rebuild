@@ -1,8 +1,8 @@
-package com.myentry.MyEntry.Services;
+package com.myentry.MyEntry.services;
 
 
-import com.myentry.MyEntry.Domain.User;
-import com.myentry.MyEntry.DTO.UserDto;
+import com.myentry.MyEntry.domain.User;
+import com.myentry.MyEntry.dto.UserDto;
 import org.springframework.stereotype.Service;
 
 

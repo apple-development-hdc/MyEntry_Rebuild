@@ -1,4 +1,4 @@
-package com.myentry.MyEntry.Domain;
+package com.myentry.MyEntry.domain;
 
 
 
@@ -10,8 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
-import static com.myentry.MyEntry.Constants.CommonConstants.LOGIN_DATE;
-import static com.myentry.MyEntry.Constants.CommonConstants.LOGOUT_DATE;
+import static com.myentry.MyEntry.constants.CommonConstants.LOGIN_DATE;
+import static com.myentry.MyEntry.constants.CommonConstants.LOGOUT_DATE;
 
 @Getter
 @Setter

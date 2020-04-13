@@ -1,8 +1,8 @@
-package com.myentry.MyEntry.Services;
+package com.myentry.MyEntry.services;
 
-import com.myentry.MyEntry.Domain.LaptopRequest;
-import com.myentry.MyEntry.Repository.LaptopRequestRepository;
-import com.myentry.MyEntry.Utils.ExcelUtils;
+import com.myentry.MyEntry.domain.LaptopRequest;
+import com.myentry.MyEntry.repository.LaptopRequestRepository;
+import com.myentry.MyEntry.utils.ExcelUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

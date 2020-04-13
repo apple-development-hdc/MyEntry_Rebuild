@@ -1,11 +1,11 @@
-package com.myentry.MyEntry.Controller;
+package com.myentry.MyEntry.controller;
 
-import com.myentry.MyEntry.Constants.APIConstants;
-import com.myentry.MyEntry.DTO.JwtRequest;
-import com.myentry.MyEntry.DTO.JwtResponse;
-import com.myentry.MyEntry.DTO.LoginUser;
-import com.myentry.MyEntry.Services.JwtUserDetailsService;
-import com.myentry.MyEntry.Utils.JwtTokenUtil;
+import com.myentry.MyEntry.constants.APIConstants;
+import com.myentry.MyEntry.dto.JwtRequest;
+import com.myentry.MyEntry.dto.JwtResponse;
+import com.myentry.MyEntry.dto.LoginUser;
+import com.myentry.MyEntry.services.JwtUserDetailsService;
+import com.myentry.MyEntry.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

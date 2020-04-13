@@ -1,4 +1,4 @@
-package com.myentry.MyEntry.Constants;
+package com.myentry.MyEntry.constants;
 
 /**
  * Author :SAURAV ROY

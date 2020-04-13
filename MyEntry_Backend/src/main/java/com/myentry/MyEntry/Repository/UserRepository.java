@@ -1,6 +1,6 @@
-package com.myentry.MyEntry.Repository;
+package com.myentry.MyEntry.repository;
 
-import com.myentry.MyEntry.Domain.User;
+import com.myentry.MyEntry.domain.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
