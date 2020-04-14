@@ -1,7 +1,7 @@
-package com.myentry.MyEntry.Repository;
+package com.myentry.MyEntry.repository;
 
 
-import com.myentry.MyEntry.Domain.LaptopRequest;
+import com.myentry.MyEntry.domain.LaptopRequest;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

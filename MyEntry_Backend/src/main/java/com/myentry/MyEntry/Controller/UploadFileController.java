@@ -1,5 +1,5 @@
-package com.myentry.MyEntry.Controller;
-import com.myentry.MyEntry.Services.FileService;
+package com.myentry.MyEntry.controller;
+import com.myentry.MyEntry.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

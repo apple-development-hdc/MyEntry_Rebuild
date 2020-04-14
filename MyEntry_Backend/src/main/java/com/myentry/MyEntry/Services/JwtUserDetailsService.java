@@ -1,14 +1,14 @@
-package com.myentry.MyEntry.Services;
+package com.myentry.MyEntry.services;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.myentry.MyEntry.DTO.Role;
-import com.myentry.MyEntry.Domain.User;
-import com.myentry.MyEntry.DTO.UserDto;
-import com.myentry.MyEntry.Repository.UserRepository;
+import com.myentry.MyEntry.dto.Role;
+import com.myentry.MyEntry.domain.User;
+import com.myentry.MyEntry.dto.UserDto;
+import com.myentry.MyEntry.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
  * Author :SAURAV ROY
  */
 @Service
-public class JwtUserDetailsService implements UserDetailsService, UserService  {
+public class JwtUserDetailsService implements UserDetailsService, com.myentry.MyEntry.services.UserService {
 
     @Autowired
     private PasswordEncoder bcryptEncoder;

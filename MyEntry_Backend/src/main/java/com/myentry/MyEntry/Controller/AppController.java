@@ -1,10 +1,10 @@
-package com.myentry.MyEntry.Controller;
+package com.myentry.MyEntry.controller;
 
-import com.myentry.MyEntry.Constants.APIConstants;
-import com.myentry.MyEntry.Domain.User;
-import com.myentry.MyEntry.DTO.UserDto;
-import com.myentry.MyEntry.Services.JwtUserDetailsService;
-import com.myentry.MyEntry.Services.UserService;
+import com.myentry.MyEntry.constants.APIConstants;
+import com.myentry.MyEntry.domain.User;
+import com.myentry.MyEntry.dto.UserDto;
+import com.myentry.MyEntry.services.JwtUserDetailsService;
+import com.myentry.MyEntry.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;

@@ -1,4 +1,4 @@
-package com.myentry.MyEntry.DTO;
+package com.myentry.MyEntry.dto;
 
 import java.io.Serializable;
 

@@ -1,6 +1,6 @@
-package com.myentry.MyEntry.Utils;
+package com.myentry.MyEntry.utils;
 
-import com.myentry.MyEntry.Domain.LaptopRequest;
+import com.myentry.MyEntry.domain.LaptopRequest;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 

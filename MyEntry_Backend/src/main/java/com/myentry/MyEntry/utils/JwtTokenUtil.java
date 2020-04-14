@@ -1,4 +1,4 @@
-package com.myentry.MyEntry.Utils;
+package com.myentry.MyEntry.utils;
 import java.io.Serializable;
 import java.util.*;
 import java.util.function.Function;
@@ -14,7 +14,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import static com.myentry.MyEntry.Constants.CommonConstants.*;
+import static com.myentry.MyEntry.constants.CommonConstants.*;
 /**
  * Author :SAURAV ROY
  */

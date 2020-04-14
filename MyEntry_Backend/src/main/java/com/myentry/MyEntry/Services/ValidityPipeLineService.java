@@ -1,4 +1,4 @@
-package com.myentry.MyEntry.Services;
+package com.myentry.MyEntry.services;
 
 import org.springframework.stereotype.Service;
 
