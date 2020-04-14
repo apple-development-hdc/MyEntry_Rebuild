@@ -28,10 +28,10 @@ public class User extends BaseEntity{
     @JsonIgnore
     private String password;
 
-    @Column(name = LOGIN_DATE)
+    @Column(name = LOGIN_DATE, insertable = false, updatable = false)
     private LocalDateTime loginDate;
 
-    @Column(name = LOGOUT_DATE)
+    @Column(name = LOGOUT_DATE, insertable = false, updatable = false)
     private LocalDateTime logoutDate;
 
 
