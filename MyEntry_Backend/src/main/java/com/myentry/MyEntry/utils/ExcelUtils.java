@@ -92,7 +92,7 @@ public class ExcelUtils {
             Workbook workbook = new XSSFWorkbook(is);
 
             Sheet sheet = workbook.getSheet("Laptop"); //Sheet Name
-            //   System.out.println("Sheet name="+sheet.getSheetName());
+
             Iterator<Row> rows= sheet.iterator();
             List<LaptopRequest> laptopRequestList = new ArrayList<LaptopRequest>();
 
