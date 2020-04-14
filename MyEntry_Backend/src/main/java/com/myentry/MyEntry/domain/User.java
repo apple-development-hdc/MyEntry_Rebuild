@@ -1,10 +1,11 @@
 package com.myentry.MyEntry.domain;
-
+import static com.myentry.MyEntry.constants.CommonConstants.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.myentry.MyEntry.dto.Role;
 import com.myentry.MyEntry.dto.Role;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 /**
@@ -26,6 +27,12 @@ public class User extends BaseEntity{
     @Column
     @JsonIgnore
     private String password;
+
+    @Column(name = LOGIN_DATE)
+    private LocalDateTime loginDate;
+
+    @Column(name = LOGOUT_DATE)
+    private LocalDateTime logoutDate;
 
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -64,5 +71,11 @@ public class User extends BaseEntity{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+    public void loginDateSetter() {
+        this.loginDate = LocalDateTime.now();
+    }
+    public void logoutDateSetter() {
+        this.loginDate = LocalDateTime.now();
     }
 }
