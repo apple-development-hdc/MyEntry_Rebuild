@@ -4,8 +4,11 @@ import com.myentry.MyEntry.Constants.APIConstants;
 import com.myentry.MyEntry.DTO.JwtRequest;
 import com.myentry.MyEntry.DTO.JwtResponse;
 import com.myentry.MyEntry.DTO.LoginUser;
+import com.myentry.MyEntry.Domain.User;
+import com.myentry.MyEntry.Repository.UserRepository;
 import com.myentry.MyEntry.Services.JwtUserDetailsService;
 import com.myentry.MyEntry.Utils.JwtTokenUtil;
+import org.codehaus.groovy.syntax.TokenException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,6 +31,9 @@ public class JwtAuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
@@ -45,7 +51,13 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    @RequestMapping(value = APIConstants.AUTHENTICATION_API, method = RequestMethod.POST)
+    /**
+     *
+     * @param loginUser {@link LoginUser}
+     * @return ResponseEntity<?>
+     * @throws AuthenticationException
+     */
+    @RequestMapping(value = APIConstants.AUTHENTICATION_API, method = RequestMethod.PUT)
     public ResponseEntity<?> register(@RequestBody LoginUser loginUser) throws AuthenticationException {
 
         final Authentication authentication = authenticationManager.authenticate(
@@ -54,12 +66,18 @@ public class JwtAuthenticationController {
                         loginUser.getPassword()
                 )
         );
+        User user = userRepository.findByUsername(loginUser.getUsername());
+        user.loginDateSetter();
+        userRepository.save(user);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final String token = jwtTokenUtil.generateTokens(authentication);
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
-
+    @RequestMapping(value = APIConstants.LOGOUT_CURRENT_USER,method = RequestMethod.POST)
+    public ResponseEntity<?> logoutUser() throws TokenException {
+        return  null;
+    }
 
 
     /**

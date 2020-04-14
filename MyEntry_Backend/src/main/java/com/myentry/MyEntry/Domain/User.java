@@ -2,6 +2,7 @@ package com.myentry.MyEntry.Domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.myentry.MyEntry.DTO.Role;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -9,8 +10,13 @@ import java.util.Set;
 /**
  * Author :SAURAV ROY
  */
+
+/**
+ * SIGN UP USER
+ */
 @Entity
-public class User{
+@NoArgsConstructor
+public class User extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
