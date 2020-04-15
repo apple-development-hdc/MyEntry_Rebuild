@@ -1,5 +1,8 @@
 package org.myEntryApp.server.serviceImpl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,10 +10,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 import org.myEntryApp.server.domain.Visitor;
-import org.myEntryApp.server.dto.VisitorDTO;
-import org.myEntryApp.server.dto.VisitorRequestDTO;
-import org.myEntryApp.server.dto.VisitorResponseBodyDTO;
-import org.myEntryApp.server.dto.VisitorResponseDTO;
+import org.myEntryApp.server.dto.*;
 import org.myEntryApp.server.repository.VisitorRepository;
 import org.myEntryApp.server.service.VisitorService;
 import org.springframework.beans.BeanUtils;
@@ -102,6 +102,37 @@ public class VisitorServiceImpl implements VisitorService {
 	public VisitorResponseDTO deleteVisitor(Long visitorId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public VisitorResponseDTO searchVisitor(SearchCriteria searchCriteria) throws DateTimeParseException,NullPointerException {
+		List<VisitorDTO> visitorDTOList = new ArrayList<>();
+		StringBuilder messageBuilder = new StringBuilder();
+		LocalDateTime fromDate = LocalDateTime.MIN;
+		LocalDateTime toDate = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+		try {
+			if(searchCriteria.getName()==null)
+				searchCriteria.setName("");
+			if(searchCriteria.getLocation()==null)
+				searchCriteria.setLocation("");
+			if (searchCriteria.getFromDate() != null)
+				fromDate = LocalDateTime.parse(searchCriteria.getFromDate(), formatter);
+			if (searchCriteria.getToDate() != null)
+				toDate = LocalDateTime.parse(searchCriteria.getToDate(), formatter);
+		}
+		catch(Exception e){
+			return prepareVisitorResponse(visitorDTOList);
+		}
+
+		Optional<List<Visitor>> visitors = visitorRepository.fetchSearchVisitor(searchCriteria.getName().toUpperCase(),fromDate,toDate,searchCriteria.getLocation().toUpperCase());
+		if (visitors.isPresent())
+			visitorDTOList = prepareVisitorDTOList(visitors.get());
+		else
+			messageBuilder.append("Visitor not found");
+
+		return prepareVisitorResponse(visitorDTOList);
 	}
 
 	private VisitorResponseDTO prepareVisitorResponse(List<VisitorDTO> liVisitor) {
