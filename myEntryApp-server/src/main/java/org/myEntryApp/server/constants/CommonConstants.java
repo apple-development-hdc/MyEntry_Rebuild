@@ -59,9 +59,7 @@ public class CommonConstants {
 	public static final String ODC_LOCATION = "ODC_LOCATION";
 	public static final String PROXY = "PROXY";
 	public static final String EMPLOYEE_TYPE = "EMPLOYEE_TYPE";
-
-
-	
-	
-
+    public static final String IMAGE_VALUE = "IMAGE_VALUE";
+	public static final String IMAGE_TABLE = "IMAGE_TABLE";
+	public static final String IMAGE_ID = "IMAGE_ID";
 }

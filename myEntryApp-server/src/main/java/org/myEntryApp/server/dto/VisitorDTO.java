@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.myEntryApp.server.domain.Image;
 
 @Getter
 @Setter
@@ -30,12 +31,13 @@ public class VisitorDTO {
 	private String location;
 
 	private String visitorEmpId;
-	
+
+	private String imageValue;
 
 	@Override
 	public String toString() {
 		return "VisitorDTO [id=" + id + ", visitorType=" + visitorType + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", contactNumber=" + contactNumber + ", purpose=" + purpose + ", location="
-				+ location + ", visitorEmpId=" + visitorEmpId + "]";
+				+ location + ", visitorEmpId=" + visitorEmpId  +"]";
 	}
 }

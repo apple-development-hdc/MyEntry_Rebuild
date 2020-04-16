@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
+import org.myEntryApp.server.domain.Image;
 import org.myEntryApp.server.domain.Visitor;
 import org.myEntryApp.server.dto.*;
+import org.myEntryApp.server.repository.ImageRepository;
 import org.myEntryApp.server.repository.VisitorRepository;
 import org.myEntryApp.server.service.VisitorService;
 import org.springframework.beans.BeanUtils;
@@ -22,6 +24,9 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Autowired
 	VisitorRepository visitorRepository;
+
+	@Autowired
+	ImageRepository imageRepository;
 
 	@Override
 	public VisitorResponseDTO getAllVisitors() {
@@ -52,11 +57,12 @@ public class VisitorServiceImpl implements VisitorService {
 	@Override
 	public VisitorResponseDTO createVisitor(VisitorRequestDTO visitorRequestDTO) {
 		Visitor visitor = new Visitor();
+		Image image = new Image();
 		StringBuilder messageBuilder = new StringBuilder();
 
 		VisitorDTO visitorDTO = visitorRequestDTO.getRequestBody().getVisitorDTO();
 		if (!visitorExists(visitorDTO)) {
-			saveVisitor(visitorDTO, visitor);
+			saveVisitor(visitorDTO, visitor , image);
 		} else {
 			messageBuilder.append("Visitor Already Exists with id");
 		}
@@ -72,14 +78,16 @@ public class VisitorServiceImpl implements VisitorService {
 		return Boolean.FALSE;
 	}
 
-	private Visitor saveVisitor(VisitorDTO visitorDTO, Visitor visitor) {
+	private Visitor saveVisitor(VisitorDTO visitorDTO, Visitor visitor, Image image) {
 		BeanUtils.copyProperties(visitorDTO, visitor);
+		image.setImageValue(visitorDTO.getImageValue());
+		image.setVisitor(visitor);
 		visitor.setActiveInd(1);
 		visitor.setFirstName(visitorDTO.getFirstName().toUpperCase(Locale.ENGLISH));
 		visitor.setLastName(visitorDTO.getLastName().toUpperCase(Locale.ENGLISH));
 		visitorRepository.save(visitor);
+		imageRepository.save(image);
 		return visitor;
-
 	}
 
 	@Override
