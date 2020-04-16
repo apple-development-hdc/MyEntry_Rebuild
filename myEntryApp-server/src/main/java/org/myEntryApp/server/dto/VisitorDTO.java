@@ -38,6 +38,6 @@ public class VisitorDTO {
 	public String toString() {
 		return "VisitorDTO [id=" + id + ", visitorType=" + visitorType + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", contactNumber=" + contactNumber + ", purpose=" + purpose + ", location="
-				+ location + ", visitorEmpId=" + visitorEmpId  +"]";
+				+ location + ", visitorEmpId=" + visitorEmpId  + "]";
 	}
 }

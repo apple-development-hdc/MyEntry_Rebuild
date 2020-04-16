@@ -12,11 +12,13 @@ import java.util.Optional;
 import org.myEntryApp.server.domain.Image;
 import org.myEntryApp.server.domain.Visitor;
 import org.myEntryApp.server.dto.*;
+
 import org.myEntryApp.server.repository.ImageRepository;
 import org.myEntryApp.server.repository.VisitorRepository;
 import org.myEntryApp.server.service.VisitorService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -107,8 +109,19 @@ public class VisitorServiceImpl implements VisitorService {
 	}
 
 	@Override
-	public VisitorResponseDTO deleteVisitor(Long visitorId) {
+	public VisitorResponseDTO deleteVisitor(Long visitorId) throws EmptyResultDataAccessException {
 		// TODO Auto-generated method stub
+		try {
+			Optional<Image> image = imageRepository.findById(visitorId);
+			if(image.isPresent()){
+				imageRepository.deleteById(visitorId);
+			}
+			visitorRepository.deleteById(visitorId);
+		}
+		catch(EmptyResultDataAccessException e){
+			e.printStackTrace();
+			return null;
+		}
 		return null;
 	}
 

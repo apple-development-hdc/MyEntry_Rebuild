@@ -7,11 +7,7 @@ import org.myEntryApp.server.dto.SearchCriteria;
 import org.myEntryApp.server.serviceImpl.VisitorServiceImpl;
 import org.myEntryApp.server.utils.ApplicationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = UrlConstants.VISITOR_BASE_URL)
@@ -27,7 +23,13 @@ public class VisitorController {
     visitorResponseDTO.setResponseHeader(ApplicationUtils.prepareResponseHeader(startTime));
     return visitorResponseDTO;
   }
-  
+
+  @DeleteMapping("/{visitorId}")
+  public void deleteVisitor(@PathVariable Long visitorId) {
+    visitorService.deleteVisitor(visitorId);
+  }
+
+
   @PostMapping
   public VisitorResponseDTO saveVisitor(@RequestBody VisitorRequestDTO visitorRequestDTO ) {
     long startTime = System.currentTimeMillis();
