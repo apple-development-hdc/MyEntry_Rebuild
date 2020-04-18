@@ -7,7 +7,7 @@ public class CommonConstants {
     public static final String TOKEN_PREFIX = "Bearer";
     public static final String HEADER_STRING = "Authorization";
     public static final String AUTHORITIES_KEY = "scopes";
-    public static final String LOGIN_DATE = "LOGIN_DATE";
+    public static final String LOGIN_DATE = "login_date";
     public static final String LOGOUT_DATE = "LOGIN_DATE";
 
     public static final String ID = "ID";
@@ -73,4 +73,7 @@ public class CommonConstants {
     public static final String ADDED = "ADDED";
     public static final String DELETED = "DELETED";
 
+    //Super User
+    public static final String SUPER_USER_USERNAME = "MyEntry";
+    public static final String SUPER_USER_PASSWORD = "Wipro";
 }

@@ -53,7 +53,7 @@ public class AppController {
     }
 
     /**
-     *
+     *Register the user
      * @param userDto
      * @return
      */

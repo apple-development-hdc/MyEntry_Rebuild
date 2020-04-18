@@ -41,7 +41,7 @@ public class JwtAuthenticationController {
     private JwtUserDetailsService userDetailsService;
 
     @RequestMapping(value = "/check", method = RequestMethod.POST)
-    public ResponseEntity<?> createJWTToken(@RequestBody JwtRequest authenticationRequest) throws Exception{
+    public ResponseEntity<?> createJWTToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
         final UserDetails userDetails = userDetailsService
@@ -53,7 +53,6 @@ public class JwtAuthenticationController {
     }
 
     /**
-     *
      * @param loginUser {@link LoginUser}
      * @return ResponseEntity<?>
      * @throws AuthenticationException
@@ -68,21 +67,20 @@ public class JwtAuthenticationController {
                 )
         );
         User user = userRepository.findByUsername(loginUser.getUsername());
-        user.loginDateSetter();
+        user.setLoginDate();
         userRepository.save(user);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final String token = jwtTokenUtil.generateTokens(authentication);
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    @RequestMapping(value = APIConstants.LOGOUT_CURRENT_USER,method = RequestMethod.POST)
+    @RequestMapping(value = APIConstants.LOGOUT_CURRENT_USER, method = RequestMethod.POST)
     public ResponseEntity<?> logoutUser() throws TokenException {
-        return  null;
+        return null;
     }
 
 
     /**
-     *
      * @param username {@link String}
      * @param password {@link String}
      * @throws Exception

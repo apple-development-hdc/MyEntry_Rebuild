@@ -1,8 +1,6 @@
 package com.myentry.MyEntry.domain;
 import static com.myentry.MyEntry.constants.CommonConstants.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.myentry.MyEntry.dto.Role;
-import com.myentry.MyEntry.dto.Role;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -16,15 +14,18 @@ import java.util.Set;
  * SIGN UP USER
  */
 @Entity
+@Table(name = "user")
 @NoArgsConstructor
 public class User extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
-    @Column
+
+    @Column(name = "username")
     private String username;
-    @Column
+
+    @Column(name = "password")
     @JsonIgnore
     private String password;
 
@@ -72,7 +73,7 @@ public class User extends BaseEntity{
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-    public void loginDateSetter() {
+    public void setLoginDate() {
         this.loginDate = LocalDateTime.now();
     }
     public void logoutDateSetter() {

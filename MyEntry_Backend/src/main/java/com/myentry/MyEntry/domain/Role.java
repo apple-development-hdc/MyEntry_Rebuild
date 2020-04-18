@@ -1,4 +1,4 @@
-package com.myentry.MyEntry.dto;
+package com.myentry.MyEntry.domain;
 
 import javax.persistence.*;
 
@@ -6,10 +6,10 @@ import javax.persistence.*;
  * Author :SAURAV ROY
  */
 @Entity
+@Table(name = "role")
 public class Role {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
     @Column

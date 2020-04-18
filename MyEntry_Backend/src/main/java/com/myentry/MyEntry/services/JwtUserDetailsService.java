@@ -5,10 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.myentry.MyEntry.dto.Role;
+import com.myentry.MyEntry.domain.UserRole;
 import com.myentry.MyEntry.domain.User;
 import com.myentry.MyEntry.dto.UserDto;
 import com.myentry.MyEntry.repository.UserRepository;
+import com.myentry.MyEntry.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,6 +32,8 @@ public class JwtUserDetailsService implements UserDetailsService, com.myentry.My
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserRoleRepository userRoleRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -97,6 +100,9 @@ public class JwtUserDetailsService implements UserDetailsService, com.myentry.My
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+        UserRole userRole = new UserRole();
+        userRole.setRoleId(5);
+        userRoleRepository.save(userRole);
         return userRepository.save(newUser);
     }
 }
