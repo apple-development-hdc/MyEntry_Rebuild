@@ -2,6 +2,7 @@ package com.myentry.MyEntry.controller;
 
 
 import com.myentry.MyEntry.constants.APIConstants;
+import com.myentry.MyEntry.dto.SearchCriteria;
 import com.myentry.MyEntry.dto.VisitorRequestDTO;
 import com.myentry.MyEntry.dto.VisitorResponseDTO;
 import com.myentry.MyEntry.serviceImpl.VisitorServiceImpl;
@@ -59,6 +60,14 @@ public class VisitorController {
 	public VisitorResponseDTO deleteVisitor(@PathVariable Long visitorId) {
 		long startTime = System.currentTimeMillis();
 		VisitorResponseDTO visitorResponseDTO = visitorService.deleteVisitor(visitorId);
+		visitorResponseDTO.setResponseHeader(ApplicationUtils.prepareResponseHeader(startTime));
+		return visitorResponseDTO;
+	}
+
+	@PostMapping("/search")
+	public  VisitorResponseDTO searchVisitor(@RequestBody SearchCriteria searchCriteria) {
+		long startTime = System.currentTimeMillis();
+		VisitorResponseDTO visitorResponseDTO= visitorService.searchVisitor(searchCriteria);
 		visitorResponseDTO.setResponseHeader(ApplicationUtils.prepareResponseHeader(startTime));
 		return visitorResponseDTO;
 	}
