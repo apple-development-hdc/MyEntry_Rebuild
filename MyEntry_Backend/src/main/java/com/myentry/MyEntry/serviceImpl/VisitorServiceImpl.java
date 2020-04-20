@@ -9,8 +9,10 @@ import java.util.Locale;
 import java.util.Optional;
 
 import com.myentry.MyEntry.constants.CommonConstants;
+import com.myentry.MyEntry.domain.Image;
 import com.myentry.MyEntry.domain.Visitor;
 import com.myentry.MyEntry.dto.*;
+import com.myentry.MyEntry.repository.ImageRepository;
 import com.myentry.MyEntry.repository.VisitorRepository;
 import com.myentry.MyEntry.services.VisitorService;
 
@@ -18,6 +20,7 @@ import com.myentry.MyEntry.services.VisitorService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,6 +28,9 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Autowired
 	VisitorRepository visitorRepository;
+
+	@Autowired
+	ImageRepository imageRepository;
 
 	@Override
 	public VisitorResponseDTO getAllVisitors() {
@@ -77,11 +83,15 @@ public class VisitorServiceImpl implements VisitorService {
 
 	private Visitor saveVisitor(VisitorDTO visitorDTO, Visitor visitor) {
 		BeanUtils.copyProperties(visitorDTO, visitor);
+		Image image = new Image();
+		image.setImageValue(visitorDTO.getImageValue());
 		visitor.setActiveInd(1);
 		visitor.setFirstName(visitorDTO.getFirstName().toUpperCase(Locale.ENGLISH));
 		visitor.setLastName(visitorDTO.getLastName().toUpperCase(Locale.ENGLISH));
 		visitor.setStatus(CommonConstants.ADDED);
+		image.setVisitor(visitor);
 		visitorRepository.save(visitor);
+		imageRepository.save(image);
 		return visitor;
 
 	}
@@ -128,6 +138,8 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Override
 	public VisitorResponseDTO deleteVisitor(Long visitorId) {
+		Optional<Image> image = imageRepository.findById(visitorId);
+		if(image.isPresent()){imageRepository.deleteById(visitorId);}
 		return deleteVisitorAndSave(fetchVisitorById(visitorId));
 	}
 

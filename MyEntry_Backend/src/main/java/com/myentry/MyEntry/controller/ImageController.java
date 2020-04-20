@@ -15,6 +15,7 @@ public class ImageController {
 
     @Autowired
     ImageServiceImpl imageServiceImpl;
+
     @GetMapping("/image/{imageId}")
     public Optional<Image> getImage(@PathVariable Long imageId) {
         Optional<Image> image= imageServiceImpl.getImageById(imageId);
