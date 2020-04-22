@@ -20,7 +20,6 @@ import com.myentry.MyEntry.services.VisitorService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -48,11 +47,9 @@ public class VisitorServiceImpl implements VisitorService {
 			visitors.add(prepareVisitorDTO(visitor));
 		});
 		return visitors;
-
 	}
 
 	private VisitorDTO prepareVisitorDTO(Visitor visitor) {
-
 		VisitorDTO visitorDTO = new VisitorDTO();
 		BeanUtils.copyProperties(visitor, visitorDTO);
 		return visitorDTO;
@@ -93,7 +90,6 @@ public class VisitorServiceImpl implements VisitorService {
 		visitorRepository.save(visitor);
 		imageRepository.save(image);
 		return visitor;
-
 	}
 
 	@Override
@@ -108,14 +104,17 @@ public class VisitorServiceImpl implements VisitorService {
 			messageBuilder.append("visitor cannot be updated");
 		}
 		return prepareVisitorResponse(visitorDTOList, messageBuilder.toString());
-
 	}
 
 	private void updateAndSaveVisitor(Visitor visitor, VisitorDTO visitorDTO) {
 		BeanUtils.copyProperties(visitorDTO, visitor);
+		Image image = new Image();
+		image.setImageValue(visitorDTO.getImageValue());
 		visitor.setFirstName(visitorDTO.getFirstName().toUpperCase(Locale.ENGLISH));
 		visitor.setLastName(visitorDTO.getLastName().toUpperCase(Locale.ENGLISH));
+		image.setVisitor(visitor);
 		visitorRepository.save(visitor);
+		imageRepository.save(image);
 	}
 
 	private Visitor fetchVisitorById(Long visitorId) {
