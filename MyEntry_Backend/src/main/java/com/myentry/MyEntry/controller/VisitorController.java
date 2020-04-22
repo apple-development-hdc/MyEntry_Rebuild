@@ -8,6 +8,7 @@ import com.myentry.MyEntry.dto.VisitorResponseDTO;
 import com.myentry.MyEntry.serviceImpl.VisitorServiceImpl;
 import com.myentry.MyEntry.utils.ApplicationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ public class VisitorController {
 	@Autowired
 	private VisitorServiceImpl visitorService;
 
+	@PreAuthorize("hasRole('USER')")
 	@GetMapping
 	public VisitorResponseDTO getAllVisitors() {
 		long startTime = System.currentTimeMillis();
@@ -32,6 +34,7 @@ public class VisitorController {
 		return visitorResponseDTO;
 	}
 
+	@PreAuthorize("hasRole('USER')")
 	@GetMapping("/{visitorId}")
 	public VisitorResponseDTO getVisitor(@PathVariable Long visitorId) {
 		long startTime = System.currentTimeMillis();
@@ -40,6 +43,7 @@ public class VisitorController {
 		return visitorResponseDTO;
 	}
 
+	@PreAuthorize("hasRole('USER')")
 	@PostMapping
 	public VisitorResponseDTO createVisitor(@RequestBody VisitorRequestDTO visitorRequestDTO) {
 		long startTime = System.currentTimeMillis();
@@ -48,6 +52,7 @@ public class VisitorController {
 		return visitorResponseDTO;
 	}
 
+	@PreAuthorize("hasRole('USER')")
 	@PutMapping
 	public VisitorResponseDTO updateVisitor(@RequestBody VisitorRequestDTO visitorRequestDTO) {
 		long startTime = System.currentTimeMillis();
@@ -56,6 +61,7 @@ public class VisitorController {
 		return visitorResponseDTO;
 	}
 
+	@PreAuthorize("hasRole('USER')")
 	@DeleteMapping("/{visitorId}")
 	public VisitorResponseDTO deleteVisitor(@PathVariable Long visitorId) {
 		long startTime = System.currentTimeMillis();
@@ -64,6 +70,7 @@ public class VisitorController {
 		return visitorResponseDTO;
 	}
 
+	@PreAuthorize("hasRole('USER')")
 	@PostMapping("/search")
 	public  VisitorResponseDTO searchVisitor(@RequestBody SearchCriteria searchCriteria) {
 		long startTime = System.currentTimeMillis();
