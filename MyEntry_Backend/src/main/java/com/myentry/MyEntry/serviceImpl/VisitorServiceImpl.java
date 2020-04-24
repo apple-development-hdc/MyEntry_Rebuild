@@ -1,5 +1,7 @@
 package com.myentry.MyEntry.serviceImpl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,11 +9,10 @@ import java.util.Locale;
 import java.util.Optional;
 
 import com.myentry.MyEntry.constants.CommonConstants;
+import com.myentry.MyEntry.domain.Image;
 import com.myentry.MyEntry.domain.Visitor;
-import com.myentry.MyEntry.dto.VisitorDTO;
-import com.myentry.MyEntry.dto.VisitorRequestDTO;
-import com.myentry.MyEntry.dto.VisitorResponseBodyDTO;
-import com.myentry.MyEntry.dto.VisitorResponseDTO;
+import com.myentry.MyEntry.dto.*;
+import com.myentry.MyEntry.repository.ImageRepository;
 import com.myentry.MyEntry.repository.VisitorRepository;
 import com.myentry.MyEntry.services.VisitorService;
 
@@ -26,6 +27,9 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Autowired
 	VisitorRepository visitorRepository;
+
+	@Autowired
+	ImageRepository imageRepository;
 
 	@Override
 	public VisitorResponseDTO getAllVisitors() {
@@ -43,11 +47,9 @@ public class VisitorServiceImpl implements VisitorService {
 			visitors.add(prepareVisitorDTO(visitor));
 		});
 		return visitors;
-
 	}
 
 	private VisitorDTO prepareVisitorDTO(Visitor visitor) {
-
 		VisitorDTO visitorDTO = new VisitorDTO();
 		BeanUtils.copyProperties(visitor, visitorDTO);
 		return visitorDTO;
@@ -78,13 +80,16 @@ public class VisitorServiceImpl implements VisitorService {
 
 	private Visitor saveVisitor(VisitorDTO visitorDTO, Visitor visitor) {
 		BeanUtils.copyProperties(visitorDTO, visitor);
+		Image image = new Image();
+		image.setImageValue(visitorDTO.getImageValue());
 		visitor.setActiveInd(1);
 		visitor.setFirstName(visitorDTO.getFirstName().toUpperCase(Locale.ENGLISH));
 		visitor.setLastName(visitorDTO.getLastName().toUpperCase(Locale.ENGLISH));
 		visitor.setStatus(CommonConstants.ADDED);
+		image.setVisitor(visitor);
 		visitorRepository.save(visitor);
+		imageRepository.save(image);
 		return visitor;
-
 	}
 
 	@Override
@@ -99,14 +104,17 @@ public class VisitorServiceImpl implements VisitorService {
 			messageBuilder.append("visitor cannot be updated");
 		}
 		return prepareVisitorResponse(visitorDTOList, messageBuilder.toString());
-
 	}
 
 	private void updateAndSaveVisitor(Visitor visitor, VisitorDTO visitorDTO) {
 		BeanUtils.copyProperties(visitorDTO, visitor);
+		Image image = new Image();
+		image.setImageValue(visitorDTO.getImageValue());
 		visitor.setFirstName(visitorDTO.getFirstName().toUpperCase(Locale.ENGLISH));
 		visitor.setLastName(visitorDTO.getLastName().toUpperCase(Locale.ENGLISH));
+		image.setVisitor(visitor);
 		visitorRepository.save(visitor);
+		imageRepository.save(image);
 	}
 
 	private Visitor fetchVisitorById(Long visitorId) {
@@ -129,7 +137,35 @@ public class VisitorServiceImpl implements VisitorService {
 
 	@Override
 	public VisitorResponseDTO deleteVisitor(Long visitorId) {
+		Optional<Image> image = imageRepository.findById(visitorId);
+		if(image.isPresent()){imageRepository.deleteById(visitorId);}
 		return deleteVisitorAndSave(fetchVisitorById(visitorId));
+	}
+
+	@Override
+	public VisitorResponseDTO searchVisitor(SearchCriteria searchCriteria) {
+		List<VisitorDTO> visitorDTOList = new ArrayList<>();
+		StringBuilder messageBuilder = new StringBuilder();
+		LocalDateTime fromDate = LocalDateTime.MIN;
+		LocalDateTime toDate = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+			if(searchCriteria.getName()==null)
+				searchCriteria.setName("");
+			if(searchCriteria.getLocation()==null)
+				searchCriteria.setLocation("");
+			if (searchCriteria.getFromDate() != null)
+				fromDate = LocalDateTime.parse(searchCriteria.getFromDate(), formatter);
+			if (searchCriteria.getToDate() != null)
+				toDate = LocalDateTime.parse(searchCriteria.getToDate(), formatter);
+
+		Optional<List<Visitor>> visitors = visitorRepository.fetchSearchVisitor(searchCriteria.getName().toUpperCase(),fromDate,toDate,searchCriteria.getLocation().toUpperCase());
+		if (visitors.isPresent())
+			visitorDTOList = prepareVisitorDTOList(visitors.get());
+		else
+			messageBuilder.append("Visitor not found");
+
+		return prepareVisitorResponse(visitorDTOList,messageBuilder.toString());
 	}
 
 	private VisitorResponseDTO deleteVisitorAndSave(Visitor visitor) {

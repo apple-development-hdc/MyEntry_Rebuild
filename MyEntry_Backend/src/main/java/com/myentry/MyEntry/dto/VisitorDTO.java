@@ -30,6 +30,8 @@ public class VisitorDTO {
 	private String location;
 
 	private String visitorEmpId;
+
+	private String imageValue;
 	
 
 	@Override

@@ -76,4 +76,9 @@ public class CommonConstants {
     //Super User
     public static final String SUPER_USER_USERNAME = "MyEntry";
     public static final String SUPER_USER_PASSWORD = "Wipro";
+
+    //Image
+    public static final String IMAGE_VALUE = "IMAGE_VALUE";
+    public static final String IMAGE_TABLE = "IMAGE_TABLE";
+    public static final String IMAGE_ID = "IMAGE_ID";
 }
